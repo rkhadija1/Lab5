@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="GameEventsLinkedListTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2023-04-24T23:34:20" hostname="Khadijas-MacBook-Pro.local" time="0.089">
+  <properties/>
+  <testcase name="testIsEmptyEmptyList()" classname="GameEventsLinkedListTest" time="0.054"/>
+  <testcase name="testAdd()" classname="GameEventsLinkedListTest" time="0.006"/>
+  <testcase name="testExtractEmptyList()" classname="GameEventsLinkedListTest" time="0.004"/>
+  <testcase name="setUp()" classname="GameEventsLinkedListTest" time="0.001"/>
+  <testcase name="testRemoveEmptyList()" classname="GameEventsLinkedListTest" time="0.001"/>
+  <testcase name="testRemoveNonEmptyList()" classname="GameEventsLinkedListTest" time="0.002"/>
+  <testcase name="testExtractNonEmptyList()" classname="GameEventsLinkedListTest" time="0.001"/>
+  <testcase name="testIsEmptyNonEmptyList()" classname="GameEventsLinkedListTest" time="0.001"/>
+  <system-out><![CDATA[details
+details1
+details3
+details1
+details3
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
