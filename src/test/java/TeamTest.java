@@ -1,10 +1,20 @@
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
-public class TeamTest {
 
+public class TeamTest {
+    /** This class tests the Team class
+     * @author TaraLennon & Khadija Mohammadi
+     * @verison 1
+     */
+
+
+    /** This method tests the team class
+     *
+     */
     @Test
     public void getTeamName() {
 
