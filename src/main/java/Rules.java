@@ -1,21 +1,14 @@
-
-/** This class creates the Rules for the game
-     * @author TaraLennon & Khadija Mohammadi
-     * @verison 1
-     */
+/**
+ * In this class, checkValidAction is a method that checks if a given action is valid in a game by
+ * checking various conditions.
+ * It returns true if all conditions are met and false otherwise, along with an error message.
+ *
+ * * @author TaraLennon & Khadija Mohammadi
+ * @verison 1
+ */
 public class Rules {
-    /**
-     * checks if an action is valid
-     * @param thisGame game being played
-     * @param rowNumFrom index of from unit
-     * @param columnNumFrom col index of from unit
-     * @param rowNumTo row number of to unit
-     * @param columnNumTo coll number of to unit
-     * @param action char representing the action
-     * @return boolean representing if its a valid action
-     */
     public static boolean checkValidAction(Game thisGame, int rowNumFrom, int columnNumFrom,
-                                           int rowNumTo, int columnNumTo, char action) {
+                                        int rowNumTo, int columnNumTo, char action) {
 
         if (!thisGame.getGameBoard().inBounds(rowNumFrom, columnNumFrom)
                 || !thisGame.getGameBoard().inBounds(rowNumTo, columnNumTo)) {
@@ -65,7 +58,7 @@ public class Rules {
         }
         else if (action == 'R') {
             if(fromPiece instanceof TomJerryUnit){
-                System.out.println("it cannot recruit.");
+                System.out.println("it can't recruit.");
                 return false;
             }
             if (toPieceEmpty) {
@@ -89,7 +82,6 @@ public class Rules {
                 System.out.println("there is not a piece on the board that  you are trying to attack.");
                 return false;
             }else if (fromPiece instanceof BartSimpsonUnit) {
-                System.out.println("it cannot recruit.");
                 return false;
 
             }
@@ -102,6 +94,7 @@ public class Rules {
                 return true;
             }
         }
+        System.out.println("Enter a valid action: ");
         return false;
     }
 }
