@@ -1,17 +1,18 @@
+/** isAWinner, getWinner, and isGameEnded are added:
+ isAWinner is checking if either of players has an empty team or
+ if both players have non-empty teams or both have empty teams to indicate one as a winner.
+ GetWinner is checking if either of players has no units left in their team.
+ Or, if both has units left or has no units left.
+ isGameEnded is checking if either team has no units left. Or, if both teams still have unit to
+ indicate the end of the game.
+ * @author TaraLennon & Khadija Mohammadi
+ * @verison 1
+ */
 import java.util.*;
 public class Game {
     private GameBoard game;
-    //an instance of a game board
     private Player player1;
-    //an instance of player 
     private Player player2;
-    //an instance of player
-    
-    /**
-     * intializes the game board
-     * @param rowsNum number of rows
-     * @param columnsNum number of columns
-     */
     private void initializeGameBoard(int rowsNum, int columnsNum){
         game = new GameBoard(rowsNum, columnsNum);
         for(Unit teamUnit1: player1.getTeam().getTeamUnits()){
@@ -24,27 +25,14 @@ public class Game {
         }
 
     }
-    
-    
     public Game(int rowsNum, int columnsNum, Player player1, Player player2){
-        //4 parameter constrcutor
         this.player1 = player1;
         this.player2 = player2;
         initializeGameBoard(rowsNum, columnsNum);
     }
-    
-    /**
-     * Gets the game baord
-     * @return GameBoard representing the board
-     */
     public GameBoard getGameBoard(){
         return game;
     }
-    
-    /**
-     * Gets the current player
-     * @return Player that is the current player
-     */
     public Player getCurrentPlayer(){
         if(player1.isTurn()){
             return player1;
@@ -55,11 +43,6 @@ public class Game {
         }
 
     }
-    
-    /**
-     * Gets the opponent player of the player whose turn it is
-     * @return Player that is the opponent player
-     */
     public Player getOpponentPlayer(){
         if(!player1.isTurn()){
             return player1;
@@ -69,39 +52,17 @@ public class Game {
             return player2;
         }
     }
-    
-    /**
-     * Gets if it is a players turn
-     * @param player whose turn it may be
-     * @return bool representing if it is their turn or not
-     */
     public boolean isTurn(Player player){
         return player.isTurn();
     }
-    
-    /**
-     * Gets an array of the board squares
-     * @return array of the board squares
-     */
     public BoardSquare[][] getBoardSquare(){
         return getGameBoard().getSquares();
     }
-    
-    /**
-     * Changes whose turn it is
-     */
     public void changeTurn(){
         this.player1.setTurn(!this.player1.isTurn());
         this.player2.setTurn(!this.player2.isTurn());
 
     }
-    
-    /**
-     * Overrides to string to display game
-     * @return String of the game
-     */
-    
-    @Override
     public String toString(){
         StringBuilder retString = new StringBuilder();
         retString.append("Game Board:\n")
@@ -115,20 +76,10 @@ public class Game {
                 .append("\nIt is Player " + getCurrentPlayer().getPlayerNumber() + "'s (" + getCurrentPlayer().getTeam().getTeamColor() + "'s) turn\n");
         return retString.toString();
     }
-    
-    /**
-     * Gets if there was a wanner
-     * @return boolean representing if there was a winner
-     */
     public boolean isAWinner()
     {
         return player1.getTeam().getTeamUnits().size() ==  0 ^ player2.getTeam().getTeamUnits().size() == 0;
     }
-    
-    /**
-     * Gets player who won
-     * @return Player who won
-     */
     public Player getWinner(){
         if(player1.getTeam().getTeamUnits().size() ==  0 && player2.getTeam().getTeamUnits().size() != 0) {
             return player2;
@@ -138,11 +89,6 @@ public class Game {
         }
         return null;
     }
-    
-    /**
-     * Gets if the game has ended
-     * @return bool representing if the game is over
-     */
     public boolean isGameEnded(){
         if(player1.getTeam().getTeamUnits().size() ==  0 || player2.getTeam().getTeamUnits().size() == 0){
             return true;
