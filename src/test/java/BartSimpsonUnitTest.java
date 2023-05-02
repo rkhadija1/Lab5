@@ -46,6 +46,7 @@ public class BartSimpsonUnitTest {
         assertTrue(bart.canSpawn());
         // bart spawns
         BartSimpsonUnit lilBart = bart.spawn();
+        BartSimpsonUnit lilBart2 = bart.spawn();
         // Number of times piece has spawned should be increased  assertEquals(1, bart.getNumTimesSpawned());
 // Now that max time number of spawns reached - it
 // shouldn't be able to spawn anymore
