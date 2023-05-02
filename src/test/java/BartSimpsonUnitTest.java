@@ -2,11 +2,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class BartSimpsonUnitTest {
     @Test
-    public void testingBartSimpsonUnitNoParamterConstructor() {
+    public void testingBartSimpsonUnitNoParameterConstructor() {
         System.out.println("Creating Bart Simpson  with 0 parameter constructor"); BartSimpsonUnit bS = new BartSimpsonUnit();
         System.out.println("-- Testing Symbol");
         assertEquals('B', bS.getSymbol());
-        assertEquals("BartSimpson", bS.getName());
+        assertEquals("Bart Simpson", bS.getName());
         assertEquals(100.0, bS.getHealth());
         assertEquals(0, bS.getNumTimesSpawned());
         assertTrue(bS.canDistract());
@@ -40,7 +40,7 @@ public class BartSimpsonUnitTest {
     @Test
     public void test_spawn() {
         System.out.println("Testing spawn");
-        // create a BartSimpsonUnit and call its spawn metho
+        // create a BartSimpsonUnit and call its spawn method
         BartSimpsonUnit bart = new BartSimpsonUnit();
         // bart should be able to spawn
         assertTrue(bart.canSpawn());
