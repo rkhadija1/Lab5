@@ -71,6 +71,7 @@ public class TextView {
         while (!(firstChar == 'A') && !(firstChar == 'M') && !(firstChar == 'R') && !(firstChar == 'S') &&
                 !(firstChar == 'a') && !(firstChar == 'm') && !(firstChar == 'r') && !(firstChar == 's')){
             // while loop which keeps asking the user to input if they don't input a designated character
+            System.out.println("Please input a valid action type");
             String userInput = scannerObject.nextLine();
             firstChar = userInput.charAt(0);
         }
@@ -101,8 +102,11 @@ public class TextView {
         return Integer.parseInt(userInputStr);
     }
 
+    /**
+     * Gets a players next action
+     *@param game the game being played
+     */
     public void getNextPlayersAction(Game game){
-        System.out.println("Enter action type");
         Scanner scnr = new Scanner(System.in);
         char nextAction = getUsersNextActionType(scnr);
         this.actionType = nextAction;
@@ -129,15 +133,25 @@ public class TextView {
 
     }
 
+    /**
+     * updates game view
+     *@param game the game being played
+     */
+
     public void updateView (Game game){
         System.out.println(game);
     }
+
+    /**
+     * Prints message when game is ended
+     * @param game the game being played
+     */
 
     public void printEndOfGameMessage (Game game){
         if (game.isGameEnded()) {
             System.out.println("The game ended.");
             if (game.isAWinner()){
-                System.out.println(game.getWinner() + " won the game.");
+                System.out.println(game.getWinner().getTeam() + " won the game.");
             }
         }
     }
