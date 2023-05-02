@@ -3,6 +3,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+  /** This class tests the methods in the Game class
+     * @author TaraLennon & Khadija Mohammadi
+     * @verison 1
+     */
+
 public class GameTest {
 
     @Test
