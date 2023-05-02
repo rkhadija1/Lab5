@@ -2,7 +2,7 @@ import java.util.Random;
 public class GameBoard {
 
     /** This class creates a GameBoard
-     * @author TaraLennon & SabrinaBarr
+     * @author TaraLennon & Khadija Mohammadi
      * @verison 1
      */
     private int numRows;
