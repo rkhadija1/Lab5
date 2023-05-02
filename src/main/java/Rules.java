@@ -1,6 +1,6 @@
 public class Rules {
     public static boolean checkValidAction(Game thisGame, int rowNumFrom, int columnNumFrom,
-                                        int rowNumTo, int columnNumTo, char action) {
+                                           int rowNumTo, int columnNumTo, char action) {
 
         if (!thisGame.getGameBoard().inBounds(rowNumFrom, columnNumFrom)
                 || !thisGame.getGameBoard().inBounds(rowNumTo, columnNumTo)) {
@@ -8,7 +8,7 @@ public class Rules {
             return false;
         }
         if (thisGame.getGameBoard().getSquares()[rowNumFrom][columnNumFrom].isEmptySpace()) {
-            System.out.println("No peice on the from square.");
+            System.out.println("No piece on the from square.");
             return false;
         }
         Unit fromPiece = thisGame.getGameBoard().getSquares()[rowNumFrom][columnNumFrom].getThisUnit();
@@ -22,7 +22,7 @@ public class Rules {
 
         if (action == 'M') {
             if (!toPieceEmpty) {
-                System.out.println("there is a peice on the space you are moving to.");
+                System.out.println("there is a piece on the space you are moving to.");
                 return false;
             } else if (!fromPiece.validMovePath()) {
                 System.out.print("The path is not valid to move.");
@@ -33,7 +33,7 @@ public class Rules {
         }
         else if (action == 'S') {
             if (!toPieceEmpty) {
-                System.out.println("there is a peice on the space you are spawning to.");
+                System.out.println("there is a piece on the space you are spawning to.");
                 return false;
             }
             else if (!fromPiece.validSpawnPath()) {
@@ -41,7 +41,7 @@ public class Rules {
                 return false;
             }
             else if(!fromPiece.canSpawn()){
-                System.out.println("the peice can not spawn.");
+                System.out.println("the piece can not spawn.");
                 return false;
             }
             else {
@@ -50,11 +50,11 @@ public class Rules {
         }
         else if (action == 'R') {
             if(fromPiece instanceof TomJerryUnit){
-                System.out.println("it cannt recruit.");
+                System.out.println("it cannot recruit.");
                 return false;
             }
             if (toPieceEmpty) {
-                System.out.println("there is not a peice on the board that  you are trying to recruit.");
+                System.out.println("there is not a piece on the board that  you are trying to recruit.");
                 return false;
             }
             else if (!fromPiece.validRecruitPath()) {
@@ -71,9 +71,10 @@ public class Rules {
         } else if (action == 'A') {
 
             if (toPieceEmpty) {
-                System.out.println("there is not a peice on the board that  you are trying to attack.");
+                System.out.println("there is not a piece on the board that  you are trying to attack.");
                 return false;
             }else if (fromPiece instanceof BartSimpsonUnit) {
+                System.out.println("it cannot recruit.");
                 return false;
 
             }
