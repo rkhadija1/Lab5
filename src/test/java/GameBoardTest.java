@@ -1,9 +1,20 @@
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameBoardTest {
+    /** This class tests the methods in the GameBoard class
+     * @author TaraLennon & Khadija Mohammadi
+     * @verison 1
+     */
 
     public static String boardString(int numRows, int numColumns){
+        /**
+         * Builds a string that represents the game board
+         * @param numRows the number of rows in the board
+         * @param numColumns the number of columns in the board
+         * @return String that represents the game board
+         */
 
         StringBuilder boardString = new StringBuilder();
         boardString.append("Col :       ");
@@ -33,6 +44,9 @@ public class GameBoardTest {
 
     @Test
     public void testingBoard()  {
+        /**
+         * Tests the game board class
+         */
 
         System.out.println("Testing Board Class");
 
