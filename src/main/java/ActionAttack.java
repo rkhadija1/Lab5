@@ -7,9 +7,14 @@
 public class ActionAttack extends Action {
 
     public ActionAttack (Game theGame, int rowNumsFrom, int columnNumsFrom, int rowNumsTo, int columnsNumsTo){
+        //5 parameter constructor
         super(theGame, rowNumsFrom, columnNumsFrom, rowNumsTo, columnsNumsTo);
 
     }
+    
+     /**
+     * performs specific action for player
+     */
 
     public void performAction(){
         if (!(theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].isEmptySpace())){
