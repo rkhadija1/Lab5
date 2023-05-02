@@ -1,11 +1,18 @@
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class BoardSquareTest{
+    /** This class tests the methods in the BoardSquare class
+     * @author TaraLennon & Khadija Mohammadi
+     * @verison 1
+     */
 
     @Test
     public void testingBoardSpace()  {
+        /**
+         * Tests the methods in the BoardSpace class
+         */
         System.out.println("Testing Board Square Class");
 
         BoardSquare testSquare11 = new BoardSquare("Black");
