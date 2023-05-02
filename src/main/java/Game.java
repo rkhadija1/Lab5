@@ -1,10 +1,5 @@
-/** isAWinner, getWinner, and isGameEnded are added:
- isAWinner is checking if either of players has an empty team or
- if both players have non-empty teams or both have empty teams to indicate one as a winner.
- GetWinner is checking if either of players has no units left in their team.
- Or, if both has units left or has no units left.
- isGameEnded is checking if either team has no units left. Or, if both teams still have unit to
- indicate the end of the game.
+/** This class defines a game with a game board, two players, and methods for playing the game
+ * and checking for a winner.
  * @author TaraLennon & Khadija Mohammadi
  * @verison 1
  */
