@@ -1,6 +1,6 @@
 public class GameEventsLinkedList {
     /** This class creates a game events linked list
-     * @author TaraLennon
+     * @author TaraLennon & Khadija Mohammadi
      * @verison 1
      */
     private GameEventNode head;
