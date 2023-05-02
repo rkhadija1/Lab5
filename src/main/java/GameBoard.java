@@ -1,57 +1,100 @@
-
+import java.util.Random;
 public class GameBoard {
-    private int rowsNum;
-    private int columnsNum;
-    private BoardSquare[][] squares;
-    public GameBoard(int rowsNum, int columnsNum){
-        this.rowsNum = rowsNum;
-        this.columnsNum = columnsNum;
-        this.squares = new BoardSquare[rowsNum][columnsNum];
-        setUpEmptyBoard();
 
+    /** This class creates a GameBoard
+     * @author TaraLennon & SabrinaBarr
+     * @verison 1
+     */
+    private int numRows;
+    //the number of rows on the game board
+    private int numColumns;
+    //the number of columns on the game board
+    private BoardSquare[][] squares;
+    //2D array that represents all the spaces on the gameboard
+
+    public GameBoard (int numRows, int numColumns){
+        //two parameter constructor
+        this.numRows = numRows;
+        this.numColumns = numColumns;
+        squares = new BoardSquare[numRows][numColumns];
+        setUpEmptyBoard();
+        }
+
+    /**
+     * Gets the number of rows on the game board
+     * @return int representing the number of rows
+     */
+    public int getRowsNum() {
+        return numRows;
     }
-    public int getRowsNum(){
-        return rowsNum;
+    /**
+     * Gets the number of columns on the game board
+     * @return int representing the number of columns
+     */
+    public int getColumnsNum() {
+        return numColumns;
     }
-    public int getColumnsNum(){
-        return columnsNum;
-    }
-    public BoardSquare[][] getSquares(){
+    /**
+     * Gets the array of spaces on the gameboard
+     * @return BoardSquare 2D array that represents all the spaces
+     */
+    public BoardSquare[][] getSquares() {
         return squares;
     }
-    public boolean inBounds(int rowsNum, int columnsNum){
-        if(rowsNum >= 0 && rowsNum < this.rowsNum) {
-            if (columnsNum >= 0 && columnsNum < this.columnsNum) {
-                return true;
-            }
-        }
 
-        return false;
+    /**
+     * Determines whether a specific row and column index is in bounds in the game board
+     * @return boolean representing whether the index is in bounds
+     */
+    public boolean inBounds (int rowIndex, int columnIndex){
+        if (((rowIndex + 1) <= numRows) && ((columnIndex + 1) <= numColumns) && (rowIndex >= 0) && (columnIndex >= 0)){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
-    private void setUpEmptyBoard(){
-        boolean answer = true;
-        for(int i = 0; i < rowsNum; i++){
-            for(int j = 0; j < columnsNum; j++){
-                if(answer){
-                    squares[i][j] = new BoardSquare("purple");
-                } else{
-                    squares[i][j] = new BoardSquare("white");
+
+    /**
+     * Creates an empty board of board squares
+     */
+    private void setUpEmptyBoard (){
+        for (int i = 0; i < squares.length; i++){
+            for (int j = 0; j <squares[i].length; j++){
+                if ((i % 2 == 0) && (j % 2 == 0) || (i % 2 == 1) && (j % 1 == 1)) {
+                    BoardSquare newBoardSquareObj = new BoardSquare("red");
+                    squares[i][j] = newBoardSquareObj;
                 }
-                answer = !answer;
+                else {
+                    BoardSquare newBoardSquareObj = new BoardSquare("white");
+                    squares[i][j] = newBoardSquareObj;
+                }
             }
-
         }
     }
-    public BoardSquare findRandomEmptySpace(){
-        int randomNumOfRow = (int)(Math.random() * rowsNum);
-        int randomNumOfColumn = (int)(Math.random() * columnsNum);
-        while (!squares[randomNumOfRow][randomNumOfColumn].isEmptySpace()){
-            randomNumOfRow = (int)(Math.random() * rowsNum);
-            randomNumOfColumn = (int)(Math.random() * columnsNum);
-        }
-        return squares[randomNumOfRow][randomNumOfColumn];
 
+    /**
+     * Finds an empty space on the game board randomly
+     * @return BoardSquare on the board that is empty
+     */
+
+    public BoardSquare findRandomEmptySpace (){
+        Random rand = new Random();
+        int randRow = rand.nextInt(numRows);
+        int randCol = rand.nextInt(numColumns);
+        while (!squares[randRow][randCol].isEmptySpace()){
+            randRow = rand.nextInt(numRows);
+            randCol = rand.nextInt(numColumns);
+        }
+        return squares[randRow][randCol];
     }
+
+    /**
+     * Overrides toString
+     * @return String that represents the GameBoard
+     */
+
+    @Override
     public String toString(){
         StringBuilder boardString = new StringBuilder();
         boardString.append("Col :       ");
@@ -69,5 +112,4 @@ public class GameBoard {
         }
         return boardString.toString();
     }
-
 }
