@@ -7,14 +7,22 @@
 import java.util.ArrayList;
 public class Controller {
     Game game;
+    //the game
     TextView textView;
+    //an instance of textView
 
     public Controller (){
+        //0 parameter constructor
         game = setUpGameModel();
         this.textView = new TextView();
         textView.updateView(game);
 
     }
+    
+    /**
+     * Sets up the game model
+     * @return Game representing the game being played
+     */
 
     public Game setUpGameModel(){
         // Create 4 pieces for team A
@@ -64,6 +72,15 @@ public class Controller {
         // Create an instance of the game
         return new Game(8, 8, playerOne, playerTwo);
     }
+    
+    /**
+     * Carries out the action a player is trying to do
+     * @param rowIndexFrom row index of from square
+     * @param colIndexFrom col index of from square
+     * @param rowIndexTo row index of to square
+     * @param colIndexTo col index of to square
+     * @param action char representing the action
+     */
 
     public void carryOutAction (int rowIndexFrom, int colIndexFrom, int rowIndexTo, int colIndexTo, char action){
         if (action == 'A'){
@@ -86,6 +103,10 @@ public class Controller {
 
         }
     }
+    
+    /**
+     * Method that plays the game
+     */
 
     public void playGame(){
         textView.getNextPlayersAction(game);
@@ -107,6 +128,10 @@ public class Controller {
             System.out.println(game.getWinner().getTeam() + " won the game.");
         }
     }
+    
+    /**
+     * Main method that creates an instance of the controller to play the game
+     */
 
     public static void main (String args[]){
         Controller controller = new Controller();
