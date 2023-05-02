@@ -5,10 +5,15 @@
  * @verison 1
  */
 public class ActionSpawn extends Action {
+    //5 parameter constructor
     public ActionSpawn (Game theGame, int rowNumsFrom, int columnNumsFrom, int rowNumsTo, int columnsNumsTo){
         super(theGame, rowNumsFrom, columnNumsFrom, rowNumsTo, columnsNumsTo);
 
     }
+    
+     /**
+     * performs specific action for player
+     */
 
     public void performAction() {
         if (!(theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].isEmptySpace())) {
