@@ -1,7 +1,7 @@
 
 class GameEvent {
     /** This class creates a game event
-     * @author TaraLennon
+     * @author TaraLennon & Khadija Mohammadi
      * @verison 1
      */
     private int playerNumber;
