@@ -11,8 +11,8 @@ public class ActionAttack extends Action {
         super(theGame, rowNumsFrom, columnNumsFrom, rowNumsTo, columnsNumsTo);
 
     }
-    
-     /**
+
+    /**
      * performs specific action for player
      */
 
@@ -21,8 +21,8 @@ public class ActionAttack extends Action {
             if (theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].getThisUnit() instanceof TomJerryUnit){
                 if (!(theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].isEmptySpace())){
                     if (theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].getThisUnit() instanceof TomJerryUnit){
-                        theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].getThisUnit().takeDamage(theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].getThisUnit().getDamageModifier());
-                        ((TomJerryUnit) theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].getThisUnit()).dealDamage();
+                        double dam = ((TomJerryUnit) theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].getThisUnit()).dealDamage();
+                        theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].getThisUnit().takeDamage(dam);
                         if (theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].getThisUnit().getHealth() <= 0){
                             Unit deadUnit = theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].removeUnit();
                             theGame.getOpponentPlayer().getTeam().removeUnitsFromTeam(deadUnit);
