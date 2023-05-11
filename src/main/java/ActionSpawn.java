@@ -10,8 +10,20 @@ public class ActionSpawn extends Action {
         super(theGame, rowNumsFrom, columnNumsFrom, rowNumsTo, columnsNumsTo);
 
     }
-    
-     /**
+
+    /**
+     * Overrides to string to display details of a specific action
+     * @return String representing the action
+     */
+
+    @Override
+    public String toString() {
+
+        return theGame.getCurrentPlayer().getTeam().getTeamColor() + " teams " +theGame.getBoardSquare()[rowNumsTo][columnsNumsTo]
+                .getThisUnit().getName() + " unit spawns onto " + rowNumsTo + "," + columnsNumsTo;
+    }
+
+    /**
      * performs specific action for player
      */
 
