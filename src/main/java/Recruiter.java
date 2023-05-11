@@ -30,14 +30,11 @@ public abstract class Recruiter extends Unit{
 
     /**
      * Gets if a path is a valid recruit path
-     * @param rowB row index of from unit
-     * @param columnB col index of from unit
-     * @param rowU row index of to unit
-     * @param columnU col index of to unit
+     * @param rowFrom row index of from unit
+     * @param columnFrom col index of from unit
+     * @param rowTo row index of to unit
+     * @param columnTo col index of to unit
      * @return bool representing if it is a valid path
      */
-    public boolean validRecruitPath(int rowB, int columnB, int rowU, int columnU )
-    {
-        return true;
-    }
+    public abstract boolean validRecruitPath(int rowFrom, int columnFrom, int rowTo, int columnTo);
 }
