@@ -13,6 +13,19 @@ public class ActionAttack extends Action {
     }
 
     /**
+     * Overrides to string to display details of a specific action
+     * @return String representing the action
+     */
+
+    @Override
+    public String toString() {
+
+        return theGame.getCurrentPlayer().getTeam().getTeamColor() + " teams " +theGame.getBoardSquare()[rowNumsTo][columnsNumsTo]
+                .getThisUnit().getName() + " unit attacks" + theGame.getOpponentPlayer().getTeam().getTeamColor() + " teams " + theGame.getBoardSquare()[rowNumsTo][columnsNumsTo]
+                .getThisUnit().getName() + " unit.";
+    }
+
+    /**
      * performs specific action for player
      */
 
