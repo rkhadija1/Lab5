@@ -284,33 +284,30 @@ public abstract class Unit {
      * method that tests if a unit can spawn
      * @return boolean representing whether it can spawn
      */
-    
+
     public abstract boolean canSpawn();
 
     /**
      * Tests if a move path is valid
-     * @return boolean representing whether the move path is valid
+     * @param rowFrom row index of the unit doing the moving
+     * @param columnFrom column index of the unit doing the moving
+     * @param rowTo row index of the square the move will be to
+     * @param columnTo column index of the square the move will be to
+     * @return boolean representing whether it is a valid move path
+     *
      */
-    public boolean validMovePath(){
-        return true;
-    }
+    public abstract boolean validMovePath(int rowFrom, int columnFrom, int rowTo, int columnTo);
 
     /**
      * Tests whether a spawn path is valid
-     * @return boolean representing if that path is valid
+     * @param rowFrom row index of the unit doing the spawning
+     * @param columnFrom column index of the unit doing the spawning
+     * @param rowTo row index of the square the spawn will be at
+     * @param columnTo column index of the square the spawn will be at
+     * @return boolean representing whether it is a valid spawn path
+     *
      */
-    public boolean validSpawnPath()
-    {
-        return true;
-    }
-
-    /**
-     * Tests if a recruit path is valid
-     * @return boolean representing whether that path is valid
-     */
-    public boolean validRecruitPath(){
-        return true;
-    }
+    public abstract boolean validSpawnPath(int rowFrom, int columnFrom, int rowTo, int columnTo);
 
 
 
