@@ -37,12 +37,7 @@ public class Team {
      * @param unitRemoved a Unit that is intended to be removed from the array list
      */
     public void removeUnitsFromTeam (Unit unitRemoved){
-        for (int i = 0; i < teamUnits.size(); i++){
-            if (teamUnits.get(i) == unitRemoved){
-                teamUnits.remove(i);
-            }
-        }
-
+                teamUnits.remove(unitRemoved);
     }
 
     /**
