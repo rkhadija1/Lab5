@@ -38,7 +38,7 @@ public class Rules {
             if (!toPieceEmpty) {
                 System.out.println("there is a piece on the space you are moving to.");
                 return false;
-            } else if (!fromPiece.validMovePath()) {
+            } else if (!fromPiece.validMovePath(rowNumFrom, columnNumFrom, rowNumTo, columnNumTo)) {
                 System.out.print("The path is not valid to move.");
                 return false;
             } else {
@@ -50,7 +50,7 @@ public class Rules {
                 System.out.println("there is a piece on the space you are spawning to.");
                 return false;
             }
-            else if (!fromPiece.validSpawnPath()) {
+            else if (!fromPiece.validSpawnPath(rowNumFrom, columnNumFrom, rowNumTo, columnNumTo)) {
                 System.out.print("The path is not valid to spawn.");
                 return false;
             }
@@ -71,7 +71,7 @@ public class Rules {
                 System.out.println("there is not a piece on the board that  you are trying to recruit.");
                 return false;
             }
-            else if (!fromPiece.validRecruitPath()) {
+            else if (!((Recruiter) fromPiece).validRecruitPath(rowNumFrom, columnNumFrom, rowNumTo, columnNumTo)){
                 System.out.print("The path is not valid to recruit.");
                 return false;
             }
@@ -82,13 +82,15 @@ public class Rules {
             else {
                 return true;
             }
-        } else if (action == 'A') {
+        }
+
+        else if (action == 'A') {
 
             if (toPieceEmpty) {
                 System.out.println("there is not a piece on the board that  you are trying to attack.");
                 return false;
             }else if (fromPiece instanceof BartSimpsonUnit) {
-                System.out.println("it cannot recruit.");
+                System.out.println("it cannot attack.");
                 return false;
 
             }
