@@ -1,4 +1,4 @@
-public class GameEventsLinkedList {
+public class GameEventsLinkedList implements Comparable<GameEventsLinkedList> {
     /**
      * This class creates a game events linked list
      *
@@ -14,6 +14,18 @@ public class GameEventsLinkedList {
         //0 parameter constructor, creates an empty linked list
         head = null;
         size = 0;
+    }
+
+    public int compareTo (GameEventsLinkedList o){
+        if (size == o.size){
+            return 0;
+        }
+        else if (size > o.size){
+            return 1;
+        }
+        else {
+            return -1;
+        }
     }
 
     /**
@@ -44,39 +56,26 @@ public class GameEventsLinkedList {
     }
 
     /**
-     * Adds a GameEventNode to a linked list
-     *
-     * @param event GameEventNode representing the next event in a linked list
+     * Adds a GameEventNode to the front of the linked list
+     * @param event GameEventNode representing the event to be added to the front of the linked list
      */
     public void push(GameEventNode event) {
         if (this.head == null) {
-            //adds the event to the top of the list if the list is empty
             this.head = event;
-            GameEventNode current = this.head;
-            while (!(current == null)) {
-                this.size = this.size + 1;
-               current = current.getNext();
-           }
-        } else {
-            GameEventNode tempNode = this.head;
-            this.head = event;
-            GameEventNode current = this.head;
-            while (!(current == null)) {
-                this.size = this.size + 1;
-                if (current.getNext() == null) {
-                    current.setNext(tempNode);
-                    break;
-               }
-               current = current.getNext();
-            }
+            this.size = this.size + 1;
         }
 
+        else {
+            GameEventNode tempNode = this.head;
+            this.head = event;
+            this.size = this.size + 1;
+            event.setNext(tempNode);
+        }
 
     }
 
     /**
-     * Removes a GameEventNode from a linked list
-     *
+     * Removes the first GameEventNode from a linked list
      * @return GameEventNode that is being removed
      */
     public GameEventNode pop() {
@@ -90,8 +89,8 @@ public class GameEventsLinkedList {
     }
 
     /**
-     * Extracts a new list from a linked list of a certain event type
-     *
+     * Extracts a new list from a linked list of a certain event type and
+     * removes the events of the certain event type from the original list
      * @param _eventType representing the event type to be extracted
      * @return new GameEventsLinkedList of the extracted nodes
      */
@@ -102,7 +101,7 @@ public class GameEventsLinkedList {
             GameEventNode current = this.head;
             GameEventNode prev = null;
             while (current != null) {
-                if (current.getGameState().getEventDetails().equals(_eventType)) {
+                if (current.getGameState().getEventType().equals(_eventType)) {
                     if (prev == null) {
                         GameEventNode storedObject = new GameEventNode(current.getGameState());
                         head = current.getNext();
@@ -122,6 +121,7 @@ public class GameEventsLinkedList {
         }
 
         return newList;
+
 
     }
 
