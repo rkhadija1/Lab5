@@ -18,7 +18,7 @@ public class GameBoard {
         this.numColumns = numColumns;
         squares = new BoardSquare[numRows][numColumns];
         setUpEmptyBoard();
-        }
+    }
 
     /**
      * Gets the number of rows on the game board
