@@ -118,4 +118,51 @@ public class TomJerryUnit extends Attacker {
     public boolean canSpawn(){
         return true;
     }
+
+    /**
+     * Tests if a move path is valid
+     * @param rowFrom row index of the unit doing the moving
+     * @param columnFrom column index of the unit doing the moving
+     * @param rowTo row index of the square the move will be to
+     * @param columnTo column index of the square the move will be to
+     * @return boolean representing whether it is a valid move path
+     *
+     */
+    public boolean validMovePath(int rowFrom, int columnFrom, int rowTo, int columnTo){
+        return true;
+    }
+
+    /**
+     * Gets whether an attack path is valid
+     * @param rowFrom row index of the unit doing the attacking
+     * @param columnFrom column index of the unit doing the attacking
+     * @param rowTo row index of the unit being attacked
+     * @param columnTo column index of the unit being attack
+     * @return boolean representing whether it is a valid attack path
+     */
+    public boolean validAttackPath(int rowFrom, int columnFrom, int rowTo, int columnTo){
+        if (rowFrom == rowTo){
+            return true;
+        }
+        else if (((rowTo - rowFrom) == 2 || (rowFrom - rowTo) == 2) && (columnFrom == columnTo)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * Tests whether a spawn path is valid
+     * @param rowFrom row index of the unit doing the spawning
+     * @param columnFrom column index of the unit doing the spawning
+     * @param rowTo row index of the square the spawn will be at
+     * @param columnTo column index of the square the spawn will be at
+     * @return boolean representing whether it is a valid spawn path
+     *
+     */
+
+    public boolean validSpawnPath(int rowFrom, int columnFrom, int rowTo, int columnTo){
+        return true;
+    }
 }
