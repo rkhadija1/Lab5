@@ -5,20 +5,26 @@
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 public class Controller {
     Game game;
     //the game
     TextView textView;
     //an instance of textView
+    GameEventsLinkedList linkedList;
+    //a linked list of game events
+
 
     public Controller (){
         //0 parameter constructor
         game = setUpGameModel();
         this.textView = new TextView();
         textView.updateView(game);
+        linkedList = new GameEventsLinkedList();
 
     }
-    
+
     /**
      * Sets up the game model
      * @return Game representing the game being played
@@ -72,7 +78,7 @@ public class Controller {
         // Create an instance of the game
         return new Game(8, 8, playerOne, playerTwo);
     }
-    
+
     /**
      * Carries out the action a player is trying to do
      * @param rowIndexFrom row index of from square
@@ -86,24 +92,38 @@ public class Controller {
         if (action == 'A'){
             ActionAttack attack = new ActionAttack(game, rowIndexFrom, colIndexFrom, rowIndexTo, colIndexTo);
             attack.performAction();
+            GameEvent gameEvent = new GameEvent(game.getCurrentPlayer().getPlayerNumber(), "Attack", attack.toString());
+            GameEventNode node = new GameEventNode(gameEvent);
+            linkedList.push(node);
         }
         else if (action == 'S'){
             ActionSpawn spawn = new ActionSpawn(game, rowIndexFrom, colIndexFrom, rowIndexTo, colIndexTo);
             spawn.performAction();
+            GameEvent gameEvent = new GameEvent(game.getCurrentPlayer().getPlayerNumber(), "Spawn", spawn.toString());
+            GameEventNode node = new GameEventNode(gameEvent);
+            linkedList.push(node);
 
         }
         else if (action == 'R'){
             ActionRecruit recruit = new ActionRecruit(game, rowIndexFrom, colIndexFrom, rowIndexTo, colIndexTo);
             recruit.performAction();
+            GameEvent gameEvent = new GameEvent(game.getCurrentPlayer().getPlayerNumber(), "Recruit", recruit.toString());
+            GameEventNode node = new GameEventNode(gameEvent);
+            linkedList.push(node);
 
         }
         else if (action == 'M'){
             ActionMove move = new ActionMove(game, rowIndexFrom, colIndexFrom, rowIndexTo, colIndexTo);
             move.performAction();
+            GameEvent gameEvent = new GameEvent(game.getCurrentPlayer().getPlayerNumber(), "Move", move.toString());
+            GameEventNode node = new GameEventNode(gameEvent);
+            linkedList.push(node);
 
         }
+
+
     }
-    
+
     /**
      * Method that plays the game
      */
@@ -123,12 +143,32 @@ public class Controller {
             carryOutAction(textView.getRowIndexFromSquare(), textView.getColIndexFromSquare(), textView.getRowIndexToSquare(), textView.getColIndexToSquare(), textView.getActionType());
             System.out.println(game);
         }
+        GameEventNode winningMove = linkedList.pop();
+        System.out.println("Winning move: " + winningMove.getGameState().getEventDetails());
+
+        ArrayList<GameEventsLinkedList> arrayLinkedList = new ArrayList<GameEventsLinkedList>();
+        GameEventsLinkedList attackList = linkedList.pop("Attack");
+        arrayLinkedList.add(attackList);
+        GameEventsLinkedList moveList = linkedList.pop("Move");
+        arrayLinkedList.add(moveList);
+        GameEventsLinkedList recruitList = linkedList.pop("Recruit");
+        arrayLinkedList.add(recruitList);
+        GameEventsLinkedList spawnList = linkedList.pop("Spawn");
+        arrayLinkedList.add(spawnList);
+
+        Collections.sort(arrayLinkedList);
+        for (GameEventsLinkedList ll: arrayLinkedList){
+            System.out.println(ll.getHead().getGameState().getEventType() + ll.getSize());
+        }
+
+
         textView.printEndOfGameMessage(game);
+
         if (game.isAWinner()) {
             System.out.println(game.getWinner().getTeam() + " won the game.");
         }
     }
-    
+
     /**
      * Main method that creates an instance of the controller to play the game
      */
