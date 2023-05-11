@@ -117,4 +117,67 @@ public class BartSimpsonUnit extends Recruiter {
         this.numTimesSpawned += 1;
         return newBartSimpson;
     }
+
+    /**
+     * Tests if a move path is valid
+     * @param rowFrom row index of the unit doing the moving
+     * @param columnFrom column index of the unit doing the moving
+     * @param rowTo row index of the square the move will be to
+     * @param columnTo column index of the square the move will be to
+     * @return boolean representing whether it is a valid move path
+     *
+     */
+    public boolean validMovePath(int rowFrom, int columnFrom, int rowTo, int columnTo){
+        if (columnFrom == columnTo){
+            return true;
+        }
+        else if (((columnTo - columnFrom) == 2 || (columnFrom - columnTo) == 2) && (rowFrom == rowTo)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * Gets if a path is a valid recruit path
+     * @param rowFrom row index of from unit
+     * @param columnFrom col index of from unit
+     * @param rowTo row index of to unit
+     * @param columnTo col index of to unit
+     * @return bool representing if it is a valid path
+     */
+
+    public boolean validRecruitPath(int rowFrom, int columnFrom, int rowTo, int columnTo){
+        if (columnFrom == columnTo){
+            return true;
+        }
+        else if (((columnTo - columnFrom) == 2 || (columnFrom - columnTo) == 2) && (rowFrom == rowTo)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+/**
+ * Tests whether a spawn path is valid
+ * @param rowFrom row index of the unit doing the spawning
+ * @param columnFrom column index of the unit doing the spawning
+ * @param rowTo row index of the square the spawn will be at
+ * @param columnTo column index of the square the spawn will be at
+ * @return boolean representing whether it is a valid spawn path
+ */
+
+    public boolean validSpawnPath(int rowFrom, int columnFrom, int rowTo, int columnTo){
+        if (columnFrom == columnTo){
+            return true;
+        }
+        else if (((columnTo - columnFrom) == 2 || (columnFrom - columnTo) == 2) && (rowFrom == rowTo)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
