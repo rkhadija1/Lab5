@@ -10,11 +10,23 @@ public class ActionRecruit extends Action {
         super(theGame, rowNumsFrom, columnNumsFrom, rowNumsTo, columnsNumsTo);
 
     }
-    
-     /**
-     * performs specific action for player
+
+    /**
+     * Overrides to string to display details of a specific action
+     * @return String representing the action
      */
 
+    @Override
+    public String toString() {
+
+        return theGame.getCurrentPlayer().getTeam().getTeamColor() + " teams " +theGame.getBoardSquare()[rowNumsTo][columnsNumsTo]
+                .getThisUnit().getName() + " unit recruits " + theGame.getOpponentPlayer().getTeam().getTeamColor() + " teams " + theGame.getBoardSquare()[rowNumsTo][columnsNumsTo]
+                .getThisUnit().getName() + " unit on row " + rowNumsTo + ", column " + columnNumsFrom;
+    }
+
+    /**
+     * performs specific action for player
+     */
     public void performAction(){
         if (!(theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].isEmptySpace())) {
             Unit unitRecruited = theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].getThisUnit();
