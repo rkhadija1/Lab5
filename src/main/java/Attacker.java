@@ -34,14 +34,11 @@ public abstract class Attacker extends Unit{
 
     /**
      * Gets whether an attack path is valid
-     * @param rowB row index of the unit doing the attacking
-     * @param columnB column index of the unit doing the attacking
-     * @param rowU row index of the unit being attacked
-     * @param columnU column index of the unit being attack
+     * @param rowFrom row index of the unit doing the attacking
+     * @param columnFrom column index of the unit doing the attacking
+     * @param rowTo row index of the unit being attacked
+     * @param columnTo column index of the unit being attack
      * @return boolean representing whether it is a valid attack path
      */
-    public boolean validAttackPath(int rowB, int columnB, int rowU, int columnU)
-    {
-        return true;
-    }
+    public abstract boolean validAttackPath(int rowFrom, int columnFrom, int rowTo, int columnTo);
 }
