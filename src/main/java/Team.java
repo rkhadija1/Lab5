@@ -14,9 +14,6 @@ public class Team {
         //two parameter constructor
         this.teamColor = teamColor;
         this.teamUnits = teamUnits;
-        for (int i = 0; i < teamUnits.size(); i++){
-            teamUnits.get(i).setTeamColor(teamColor);
-        }
     }
     /**
      * This method gets the team color
