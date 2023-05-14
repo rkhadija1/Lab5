@@ -1,20 +1,27 @@
-/** This class creates the Rules for the game
- * @author TaraLennon & Khadija Mohammadi
+/**
+ * In this class, checkValidAction is a method that checks if a given action is valid in a game by
+ * checking various conditions.
+ * It returns true if all conditions are met and false otherwise, along with an error message.
+ *
+ * * @author TaraLennon & Khadija Mohammadi
  * @verison 1
  */
 public class Rules {
-    /**
-     * checks if an action is valid
-     * @param thisGame game being played
-     * @param rowNumFrom index of from unit
-     * @param columnNumFrom col index of from unit
-     * @param rowNumTo row number of to unit
-     * @param columnNumTo coll number of to unit
-     * @param action char representing the action
-     * @return boolean representing if its a valid action
-     */
+    // initializes lastActionWasRemove
+    private static boolean lastActionWasRemove = false;
     public static boolean checkValidAction(Game thisGame, int rowNumFrom, int columnNumFrom,
-                                           int rowNumTo, int columnNumTo, char action) {
+                                        int rowNumTo, int columnNumTo, char action) {
+        // the new rule is to not allow action 'D' (remove) more than once in the entire game.
+        if (action == 'D') {
+            if (lastActionWasRemove) {
+                System.out.println("You cannot remove more than once in the entire game.");
+                return false;
+            } else {
+                lastActionWasRemove = true;
+                return true;
+            }
+        }
+
 
         if (!thisGame.getGameBoard().inBounds(rowNumFrom, columnNumFrom)
                 || !thisGame.getGameBoard().inBounds(rowNumTo, columnNumTo)) {
@@ -38,7 +45,7 @@ public class Rules {
             if (!toPieceEmpty) {
                 System.out.println("there is a piece on the space you are moving to.");
                 return false;
-            } else if (!fromPiece.validMovePath(rowNumFrom, columnNumFrom, rowNumTo, columnNumTo)) {
+            } else if (!fromPiece.validMovePath(rowNumFrom,columnNumFrom,rowNumTo,columnNumTo)) {
                 System.out.print("The path is not valid to move.");
                 return false;
             } else {
@@ -50,7 +57,7 @@ public class Rules {
                 System.out.println("there is a piece on the space you are spawning to.");
                 return false;
             }
-            else if (!fromPiece.validSpawnPath(rowNumFrom, columnNumFrom, rowNumTo, columnNumTo)) {
+            else if (!fromPiece.validSpawnPath(rowNumFrom,columnNumFrom,rowNumTo,columnNumTo)) {
                 System.out.print("The path is not valid to spawn.");
                 return false;
             }
@@ -64,14 +71,14 @@ public class Rules {
         }
         else if (action == 'R') {
             if(fromPiece instanceof TomJerryUnit){
-                System.out.println("it cannot recruit.");
+                System.out.println("it can't recruit.");
                 return false;
             }
             if (toPieceEmpty) {
                 System.out.println("there is not a piece on the board that  you are trying to recruit.");
                 return false;
             }
-            else if (!((Recruiter) fromPiece).validRecruitPath(rowNumFrom, columnNumFrom, rowNumTo, columnNumTo)){
+            else if (!fromPiece.validRecruitPath()) {
                 System.out.print("The path is not valid to recruit.");
                 return false;
             }
@@ -79,18 +86,16 @@ public class Rules {
                 System.out.println("This is not on the opponent team.");
                 return false;
             }
+
             else {
                 return true;
             }
-        }
-
-        else if (action == 'A') {
+        } else if (action == 'A') {
 
             if (toPieceEmpty) {
-                System.out.println("there is not a piece on the board that  you are trying to attack.");
+                System.out.println("there is not a piece on the board that you are trying to attack.");
                 return false;
             }else if (fromPiece instanceof BartSimpsonUnit) {
-                System.out.println("it cannot attack.");
                 return false;
 
             }
@@ -103,6 +108,8 @@ public class Rules {
                 return true;
             }
         }
+
+        System.out.println("Enter a valid action: ");
         return false;
     }
 }

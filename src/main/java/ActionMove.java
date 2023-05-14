@@ -13,26 +13,27 @@ public class ActionMove extends Action {
     }
 
     /**
-     * Overrides to string to display details of a specific action
-     * @return String representing the action
-     */
-
-    @Override
-    public String toString() {
-
-        return theGame.getCurrentPlayer().getTeam().getTeamColor() + " teams " +theGame.getBoardSquare()[rowNumsTo][columnsNumsTo]
-                .getThisUnit().getName() + " unit moves from " + rowNumsFrom + "," + columnNumsFrom + " to " + rowNumsTo + "," + columnsNumsTo;
-    }
-
-    /**
      * performs specific action for player
      */
-
+        // modifications for specialSquare: the code below moves a unit from one square to another on the
+       //game board and changes the turn if necessary.
     public void performAction(){
         if (!(theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].isEmptySpace())){
-            Unit originalUnit = theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].removeUnit();
-            theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].setThisUnit(originalUnit);
-            theGame.changeTurn();
+            System.out.println("from " + theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].isSpecialSquare());
+            System.out.println("to " + theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].isSpecialSquare());
+                if (theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].isSpecialSquare()) {
+                    Unit originalUnit = theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].removeUnit();
+                    theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].setThisUnit(originalUnit);
+
+                    theGame.getCurrentPlayer().getTeam().removeUnitsFromTeam(originalUnit);
+                    theGame.getOpponentPlayer().getTeam().addUnitsToTeam(originalUnit);
+                    theGame.changeTurn();
+                }
+                else {
+                    Unit originalUnit = theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].removeUnit();
+                    theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].setThisUnit(originalUnit);
+                    theGame.changeTurn();
+                }
         }
     }
 

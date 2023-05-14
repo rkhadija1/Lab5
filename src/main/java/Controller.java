@@ -5,23 +5,17 @@
  */
 
 import java.util.ArrayList;
-import java.util.Collections;
-
 public class Controller {
     Game game;
     //the game
     TextView textView;
     //an instance of textView
-    GameEventsLinkedList linkedList;
-    //a linked list of game events
-
 
     public Controller (){
         //0 parameter constructor
         game = setUpGameModel();
         this.textView = new TextView();
         textView.updateView(game);
-        linkedList = new GameEventsLinkedList();
 
     }
 
@@ -34,7 +28,6 @@ public class Controller {
         // Create 4 pieces for team A
         // Load the pieces in an ArrayList
         ArrayList<Unit> piecesTeamA = new ArrayList<Unit>();
-
 
         BartSimpsonUnit bs = new BartSimpsonUnit();
         bs.setTeamColor("Blu");
@@ -50,7 +43,7 @@ public class Controller {
 
         // Create a team object
         Team teamA = new Team("Blu",piecesTeamA);
-        Player playerOne = new Player(1, true, teamA);
+        Player playerOne = new Player(1, true, teamA, 0);
 
 
         // Create 4 pieces for team B
@@ -72,7 +65,7 @@ public class Controller {
 
         // Create a team object
         Team teamB = new Team("Red",piecesTeamB);
-        Player playerTwo = new Player(2, false, teamB);
+        Player playerTwo = new Player(2, false, teamB, 0);
 
 
         // Create an instance of the game
@@ -92,36 +85,26 @@ public class Controller {
         if (action == 'A'){
             ActionAttack attack = new ActionAttack(game, rowIndexFrom, colIndexFrom, rowIndexTo, colIndexTo);
             attack.performAction();
-            GameEvent gameEvent = new GameEvent(game.getCurrentPlayer().getPlayerNumber(), "Attack", attack.toString());
-            GameEventNode node = new GameEventNode(gameEvent);
-            linkedList.push(node);
         }
         else if (action == 'S'){
             ActionSpawn spawn = new ActionSpawn(game, rowIndexFrom, colIndexFrom, rowIndexTo, colIndexTo);
             spawn.performAction();
-            GameEvent gameEvent = new GameEvent(game.getCurrentPlayer().getPlayerNumber(), "Spawn", spawn.toString());
-            GameEventNode node = new GameEventNode(gameEvent);
-            linkedList.push(node);
 
         }
         else if (action == 'R'){
             ActionRecruit recruit = new ActionRecruit(game, rowIndexFrom, colIndexFrom, rowIndexTo, colIndexTo);
             recruit.performAction();
-            GameEvent gameEvent = new GameEvent(game.getCurrentPlayer().getPlayerNumber(), "Recruit", recruit.toString());
-            GameEventNode node = new GameEventNode(gameEvent);
-            linkedList.push(node);
 
         }
         else if (action == 'M'){
             ActionMove move = new ActionMove(game, rowIndexFrom, colIndexFrom, rowIndexTo, colIndexTo);
             move.performAction();
-            GameEvent gameEvent = new GameEvent(game.getCurrentPlayer().getPlayerNumber(), "Move", move.toString());
-            GameEventNode node = new GameEventNode(gameEvent);
-            linkedList.push(node);
 
         }
-
-
+        else if (action == 'D') {
+            ActionRemove remove = new ActionRemove(game, rowIndexFrom, colIndexFrom, rowIndexTo, colIndexTo);
+            remove.performAction();
+        }
     }
 
     /**
@@ -143,27 +126,7 @@ public class Controller {
             carryOutAction(textView.getRowIndexFromSquare(), textView.getColIndexFromSquare(), textView.getRowIndexToSquare(), textView.getColIndexToSquare(), textView.getActionType());
             System.out.println(game);
         }
-        GameEventNode winningMove = linkedList.pop();
-        System.out.println("Winning move: " + winningMove.getGameState().getEventDetails());
-
-        ArrayList<GameEventsLinkedList> arrayLinkedList = new ArrayList<GameEventsLinkedList>();
-        GameEventsLinkedList attackList = linkedList.pop("Attack");
-        arrayLinkedList.add(attackList);
-        GameEventsLinkedList moveList = linkedList.pop("Move");
-        arrayLinkedList.add(moveList);
-        GameEventsLinkedList recruitList = linkedList.pop("Recruit");
-        arrayLinkedList.add(recruitList);
-        GameEventsLinkedList spawnList = linkedList.pop("Spawn");
-        arrayLinkedList.add(spawnList);
-
-        Collections.sort(arrayLinkedList);
-        for (GameEventsLinkedList ll: arrayLinkedList){
-            System.out.println(ll.getHead().getGameState().getEventType() + ll.getSize());
-        }
-
-
         textView.printEndOfGameMessage(game);
-
         if (game.isAWinner()) {
             System.out.println(game.getWinner().getTeam() + " won the game.");
         }

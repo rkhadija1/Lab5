@@ -1,77 +1,61 @@
 public class BoardSquare {
-
-    /** This class creates a space on the game board
-     * @author TaraLennon & Khadija Mohammadi
-     * @verison 1
-     */
-    private boolean empty;
-    //represents whether the space is empty or not
-    private Unit unit;
-    //represents the unit that is located in the square
+    private boolean emptySpace;
+    private Unit thisUnit;
     private String squareColor;
-    //represents the color of the board square
-    public BoardSquare (String squareColor){
-        //a constructor that accepts the color and sets the property
+   // declaration of the square with different behavior
+    private boolean specialSquare;
+
+    public BoardSquare(boolean emptySpace, Unit thisUnit, String squareColor, boolean specialSquare){
+        this.emptySpace = emptySpace;
+        this.thisUnit = thisUnit;
         this.squareColor = squareColor;
-        empty = true;
+        this.specialSquare = specialSquare;
     }
-    /**
-     * Gets the whether the square is empty or not
-     * @return boolean representing whether the square is empty or not
-     */
+    public BoardSquare(String boardColor, boolean specialSquare) {
+        this(true, null, boardColor, specialSquare);
+    }
+    public Unit getThisUnit(){
+        return thisUnit;
+    }
+
     public boolean isEmptySpace() {
-        return empty;
+        return emptySpace;
     }
-
-    /**
-     * Gets the unit in the square
-     * @return Unit representing the unit in the square
-     */
-
-    public Unit getThisUnit() {
-        return unit;
-    }
-
-    /**
-     * Gets the color of the square
-     * @return String representing the color of the square
-     */
-    public String getSquareColor() {
+    public String getSquareColor(){
         return squareColor;
     }
+    public void setThisUnit(Unit theUnit) {
+        thisUnit = theUnit;
+        emptySpace = false;
 
-    /**
-     * Sets the unit in the square
-     * @param unit Unit that is in the square
-     */
-
-    public void setThisUnit(Unit unit) {
-        this.unit = unit;
-        empty = false;
     }
-
-    /**
-     * Removes the unit in the square
-     * @return Unit that was in the square
-     */
     public Unit removeUnit(){
-        Unit originalUnit = this.unit;
-        this.unit = null;
-        this.empty = true;
-        return originalUnit;
+        Unit tempUnit  = thisUnit;
+        thisUnit = null;
+        emptySpace = true;
+        return tempUnit;
     }
-    /**
-     * Overrides toString
-     * @return String that represents the square
-     */
 
     @Override
-    public String toString(){
-        if (this.unit == null){
-            return "-------";
+    public String toString() {
+        String s = " ";
+        if (thisUnit != null) {
+            s = "-" + thisUnit.toString() + "-";
         }
-        else{
-            return "-" + this.unit.toString() + "-";
+        // the square with different behavior is shown as ---S--- on the board
+        else if(this.specialSquare==true) {
+            s = "---S---";
         }
+        else if(thisUnit == null){
+            s = "-------";
+        }
+        return s;
+    }
+
+    public boolean isSpecialSquare() {
+        return this.specialSquare;
+    }
+    public boolean getSpecialSquare(){
+        return specialSquare;
     }
 }
