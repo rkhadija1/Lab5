@@ -12,6 +12,8 @@ public class Rules {
     public static boolean checkValidAction(Game thisGame, int rowNumFrom, int columnNumFrom,
                                         int rowNumTo, int columnNumTo, char action) {
         // the new rule is to not allow action 'D' (remove) more than once in the entire game.
+        //FIXME i'd come up with a better variable name than "lastActionWasRemove" because it's not really
+        //about what the last action was, but about that remove already happened. how about "hasRemovedHappened"
         if (action == 'D') {
             if (lastActionWasRemove) {
                 System.out.println("You cannot remove more than once in the entire game.");
