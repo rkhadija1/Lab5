@@ -48,6 +48,7 @@ public class Controller {
 
         // Create 4 pieces for team B
         // Load the pieces in an ArrayList
+        //FIXME we need to add some of the new piece types to this array list
         ArrayList<Unit> piecesTeamB = new ArrayList<Unit>();
 
 
