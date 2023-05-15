@@ -73,6 +73,9 @@ public class Game {
     }
     // a change in objective of the game:
     // returns true if one player has more points than the other
+    //FIXME you need to complicate the ending of the game more. this will merely return that there is a winner anytime
+    //that one player has more points than the other -- i.e. the game will end really early. I'd add some other condition. 
+    //Maybe once a certain number of turns or something is taken, THEN the player with the most points win. 
     public boolean isAWinner()
     {
         return player1.getPoints() > player2.getPoints() || player1.getPoints() < player2.getPoints();
