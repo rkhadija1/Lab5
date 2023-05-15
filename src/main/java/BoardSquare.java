@@ -51,7 +51,8 @@ public class BoardSquare {
         }
         return s;
     }
-
+    
+    //FIXME where in the program do you actually make anything special happen with this square? 
     public boolean isSpecialSquare() {
         return this.specialSquare;
     }
