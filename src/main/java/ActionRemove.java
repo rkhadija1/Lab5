@@ -5,6 +5,8 @@ public class ActionRemove extends Action {
         super(theGame, rowNumsFrom, columnNumsFrom, rowNumsTo, columnsNumsTo);
 
     }
+    
+    //FIXME shouldn't it only remove units that are from the opponent player's team? 
 
     /**
      * performs specific action for player
