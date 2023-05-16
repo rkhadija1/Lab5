@@ -1,3 +1,9 @@
+/**  This class represents an action the player can take where they
+ * remove all opponent Units that are in a one square radius of the ‘To Square’ with their own unit
+ * on the ‘from square’.
+ * @author TaraLennon & Khadija Mohammadi
+ * @verison 1
+ */
 public class ActionRemove extends Action {
 
     //5 parameter constructor
@@ -5,8 +11,6 @@ public class ActionRemove extends Action {
         super(theGame, rowNumsFrom, columnNumsFrom, rowNumsTo, columnsNumsTo);
 
     }
-    
-    //FIXME shouldn't it only remove units that are from the opponent player's team? 
 
     /**
      * performs specific action for player
@@ -14,24 +18,28 @@ public class ActionRemove extends Action {
     // a new action that removes all opponent Units that are in a one square radius of the ‘To Square’
     public void performAction() {
         if (theGame.getGameBoard().inBounds(rowNumsTo -1, columnsNumsTo)&& !theGame.getBoardSquare()[rowNumsTo -1][columnsNumsTo].isEmptySpace()) {
-            Unit temp  = theGame.getBoardSquare()[rowNumsTo -1][columnsNumsTo].removeUnit();
-            theGame.getCurrentPlayer().getTeam().removeUnitsFromTeam(temp);
-            theGame.getOpponentPlayer().getTeam().removeUnitsFromTeam(temp);
+            BoardSquare temp  = theGame.getBoardSquare()[rowNumsTo -1][columnsNumsTo];
+            if(theGame.getOpponentPlayer().getTeam().getTeamUnits().contains(temp.getThisUnit())){
+                theGame.getOpponentPlayer().getTeam().removeUnitsFromTeam(temp.getThisUnit());
+            }
         }
         if (theGame.getGameBoard().inBounds(rowNumsTo +1, columnsNumsTo)&& !theGame.getBoardSquare()[rowNumsTo +1][columnsNumsTo].isEmptySpace()) {
-            Unit temp  = theGame.getBoardSquare()[rowNumsTo +1][columnsNumsTo].removeUnit();
-            theGame.getCurrentPlayer().getTeam().removeUnitsFromTeam(temp);
-            theGame.getOpponentPlayer().getTeam().removeUnitsFromTeam(temp);
+            BoardSquare temp  = theGame.getBoardSquare()[rowNumsTo +1][columnsNumsTo];
+            if(theGame.getOpponentPlayer().getTeam().getTeamUnits().contains(temp.getThisUnit())){
+                theGame.getOpponentPlayer().getTeam().removeUnitsFromTeam(temp.getThisUnit());
+            }
         }
         if (theGame.getGameBoard().inBounds(rowNumsTo, columnsNumsTo -1)&& !theGame.getBoardSquare()[rowNumsTo][columnsNumsTo -1].isEmptySpace()) {
-            Unit temp  = theGame.getBoardSquare()[rowNumsTo][columnsNumsTo -1].removeUnit();
-            theGame.getCurrentPlayer().getTeam().removeUnitsFromTeam(temp);
-            theGame.getOpponentPlayer().getTeam().removeUnitsFromTeam(temp);
+            BoardSquare temp  = theGame.getBoardSquare()[rowNumsTo][columnsNumsTo -1];
+            if(theGame.getOpponentPlayer().getTeam().getTeamUnits().contains(temp.getThisUnit())){
+                theGame.getOpponentPlayer().getTeam().removeUnitsFromTeam(temp.getThisUnit());
+            }
         }
         if (theGame.getGameBoard().inBounds(rowNumsTo, columnsNumsTo +1)&& !theGame.getBoardSquare()[rowNumsTo][columnsNumsTo +1].isEmptySpace()) {
-            Unit temp  = theGame.getBoardSquare()[rowNumsTo][columnsNumsTo +1].removeUnit();
-            theGame.getCurrentPlayer().getTeam().removeUnitsFromTeam(temp);
-            theGame.getOpponentPlayer().getTeam().removeUnitsFromTeam(temp);
+            BoardSquare temp  = theGame.getBoardSquare()[rowNumsTo][columnsNumsTo +1];
+            if(theGame.getOpponentPlayer().getTeam().getTeamUnits().contains(temp.getThisUnit())){
+                theGame.getOpponentPlayer().getTeam().removeUnitsFromTeam(temp.getThisUnit());
+            }
         }
         theGame.changeTurn();
 
