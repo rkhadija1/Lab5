@@ -52,11 +52,13 @@ public class BoardSquare {
         return s;
     }
     
+    
     //FIXME where in the program do you actually make anything special happen with this square? 
+    
+    //the special square is the rendom square in the form of "---S---" on the board and if any  
+    //unit lands on this square – the game unit switches teams.
+
     public boolean isSpecialSquare() {
         return this.specialSquare;
-    }
-    public boolean getSpecialSquare(){
-        return specialSquare;
     }
 }
