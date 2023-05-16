@@ -1,3 +1,8 @@
+/**  This class defines a game board square with variables for thisUnit, 
+ * emptySpace, and squareColor. It has removeUnit() and toString() methods.
+ * @author TaraLennon & Khadija Mohammadi
+ * @verison 1
+ */
 public class BoardSquare {
     private boolean emptySpace;
     private Unit thisUnit;
