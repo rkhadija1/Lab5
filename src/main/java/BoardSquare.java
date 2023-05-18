@@ -1,69 +1,131 @@
-/**  This class defines a game board square with variables for thisUnit, 
- * emptySpace, and squareColor. It has removeUnit() and toString() methods.
- * @author TaraLennon & Khadija Mohammadi
- * @verison 1
- */
-public class BoardSquare {
-    private boolean emptySpace;
-    private Unit thisUnit;
-    private String squareColor;
-   // declaration of the square with different behavior
-    private boolean specialSquare;
+import java.util.Random;
+public class GameBoard {
 
-    public BoardSquare(boolean emptySpace, Unit thisUnit, String squareColor, boolean specialSquare){
-        this.emptySpace = emptySpace;
-        this.thisUnit = thisUnit;
-        this.squareColor = squareColor;
-        this.specialSquare = specialSquare;
-    }
-    public BoardSquare(String boardColor, boolean specialSquare) {
-        this(true, null, boardColor, specialSquare);
-    }
-    public Unit getThisUnit(){
-        return thisUnit;
+    /** This class creates a GameBoard
+     * @author TaraLennon & Khadija Mohammadi
+     * @verison 1
+     */
+    private int numRows;
+    //the number of rows on the game board
+    private int numColumns;
+    //the number of columns on the game board
+    private BoardSquare[][] squares;
+    //2D array that represents all the spaces on the gameboard
+
+    public GameBoard (int numRows, int numColumns){
+        //two parameter constructor
+        this.numRows = numRows;
+        this.numColumns = numColumns;
+        squares = new BoardSquare[numRows][numColumns];
+        setUpEmptyBoard();
     }
 
-    public boolean isEmptySpace() {
-        return emptySpace;
+    /**
+     * Gets the number of rows on the game board
+     * @return int representing the number of rows
+     */
+    public int getRowsNum() {
+        return numRows;
     }
-    public String getSquareColor(){
-        return squareColor;
+    /**
+     * Gets the number of columns on the game board
+     * @return int representing the number of columns
+     */
+    public int getColumnsNum() {
+        return numColumns;
     }
-    public void setThisUnit(Unit theUnit) {
-        thisUnit = theUnit;
-        emptySpace = false;
+    /**
+     * Gets the array of spaces on the gameboard
+     * @return BoardSquare 2D array that represents all the spaces
+     */
+    public BoardSquare[][] getSquares() {
+        return squares;
+    }
 
+    /**
+     * Determines whether a specific row and column index is in bounds in the game board
+     * @return boolean representing whether the index is in bounds
+     */
+    public boolean inBounds (int rowIndex, int columnIndex){
+        if (((rowIndex + 1) <= numRows) && ((columnIndex + 1) <= numColumns) && (rowIndex >= 0) && (columnIndex >= 0)){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
-    public Unit removeUnit(){
-        Unit tempUnit  = thisUnit;
-        thisUnit = null;
-        emptySpace = true;
-        return tempUnit;
+
+    /**
+     * Creates an empty board of board squares
+     */
+    private void setUpEmptyBoard (){
+        Random rand = new Random();
+        int specialRow = rand.nextInt(numRows);
+        int specialColumn = rand.nextInt(numColumns);
+
+        for (int i = 0; i < squares.length; i++){
+            for (int j = 0; j <squares[i].length; j++){
+                if ((i % 2 == 0) && (j % 2 == 0) || (i % 2 == 1) && (j % 1 == 1)) {
+                    if (specialRow == i && specialColumn == j){
+                        BoardSquare newBoardSquareObj = new BoardSquare("red", true);
+                        squares[i][j] = newBoardSquareObj;
+                    }
+                    else {
+                        BoardSquare newBoardSquareObj = new BoardSquare("red", false);
+                        squares[i][j] = newBoardSquareObj;
+                    }
+                }
+                else {
+                    if (specialRow == i && specialColumn == j){
+                        BoardSquare newBoardSquareObj = new BoardSquare("white", true);
+                        squares[i][j] = newBoardSquareObj;
+                    }
+                    else {
+                        BoardSquare newBoardSquareObj = new BoardSquare("white", true);
+                        squares[i][j] = newBoardSquareObj;
+                    }
+                }
+            }
+        }
     }
+
+    /**
+     * Finds an empty space on the game board randomly
+     * @return BoardSquare on the board that is empty
+     */
+
+    public BoardSquare findRandomEmptySpace (){
+        Random rand = new Random();
+        int randRow = rand.nextInt(numRows);
+        int randCol = rand.nextInt(numColumns);
+        while (!squares[randRow][randCol].isEmptySpace()){
+            randRow = rand.nextInt(numRows);
+            randCol = rand.nextInt(numColumns);
+        }
+        return squares[randRow][randCol];
+    }
+
+    /**
+     * Overrides toString
+     * @return String that represents the GameBoard
+     */
 
     @Override
-    public String toString() {
-        String s = " ";
-        if (thisUnit != null) {
-            s = "-" + thisUnit.toString() + "-";
-        }
-        // the square with different behavior is shown as ---S--- on the board
-        else if(this.specialSquare==true) {
-            s = "---S---";
-        }
-        else if(thisUnit == null){
-            s = "-------";
-        }
-        return s;
-    }
-    
-    
-    //FIXME where in the program do you actually make anything special happen with this square? 
-    
-    //the special square is the rendom square in the form of "---S---" on the board and if any  
-    //unit lands on this square – the game unit switches teams.
+    public String toString(){
+        StringBuilder boardString = new StringBuilder();
+        boardString.append("Col :       ");
 
-    public boolean isSpecialSquare() {
-        return this.specialSquare;
+        for(int col = 0; col < squares[0].length; col++){
+            boardString.append(col + "        ");
+        }
+        boardString.append("\n");
+        for(int row = 0; row < squares.length; row++){
+            boardString.append("Row : " + row + "   ");
+            for(int col = 0; col < squares[row].length; col++){
+                boardString.append(squares[row][col].toString() + "  ");
+            }
+            boardString.append("\n");
+        }
+        return boardString.toString();
     }
 }
