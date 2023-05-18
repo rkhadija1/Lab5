@@ -1,16 +1,22 @@
-/**
- * In this class, checkValidAction is a method that checks if a given action is valid in a game by
- * checking various conditions.
- * It returns true if all conditions are met and false otherwise, along with an error message.
- *
- * * @author TaraLennon & Khadija Mohammadi
+/** This class creates the Rules for the game
+ * @author TaraLennon & Khadija Mohammadi
  * @verison 1
  */
 public class Rules {
+    /**
+     * checks if an action is valid
+     * @param thisGame game being played
+     * @param rowNumFrom index of from unit
+     * @param columnNumFrom col index of from unit
+     * @param rowNumTo row number of to unit
+     * @param columnNumTo coll number of to unit
+     * @param action char representing the action
+     * @return boolean representing if its a valid action
+     */
     // initializes hasRemovedHappened
     private static boolean hasRemovedHappened = false;
     public static boolean checkValidAction(Game thisGame, int rowNumFrom, int columnNumFrom,
-                                        int rowNumTo, int columnNumTo, char action) {
+                                           int rowNumTo, int columnNumTo, char action) {
         // the new rule is to not allow action 'D' (remove) more than once in the entire game.
         //FIXME i'd come up with a better variable name than "lastActionWasRemove" because it's not really
         //about what the last action was, but about that remove already happened. how about "hasRemovedHappened"
