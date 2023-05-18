@@ -19,8 +19,6 @@ public class ActionMove extends Action {
        //game board and changes the turn if necessary.
     public void performAction(){
         if (!(theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].isEmptySpace())){
-            System.out.println("from " + theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].isSpecialSquare());
-            System.out.println("to " + theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].isSpecialSquare());
                 if (theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].isSpecialSquare()) {
                     Unit originalUnit = theGame.getGameBoard().getSquares()[rowNumsFrom][columnNumsFrom].removeUnit();
                     theGame.getGameBoard().getSquares()[rowNumsTo][columnsNumsTo].setThisUnit(originalUnit);
