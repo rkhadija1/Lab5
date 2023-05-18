@@ -3,10 +3,12 @@
  * @verison 1
  */
 public class Oda extends TomJerryUnit{
-    public Oda(){
-        super(true, true, false);
-        this.name = "Oda";
-        this.symbol = 'O';
+    public Oda(char symbol, String name, double health, double healthModifier, double damage, double damageModifier, int luck, int xCor, int yCor, int movement, int movementModifier, String teamColor, int numAttacks, boolean homingRocket, boolean offerCheese, boolean hiding)){
+        super(char symbol, String name, double health, double healthModifier, double damage, double damageModifier, int luck, int xCor, int yCor, int movement, int movementModifier, String teamColor, int numAttacks, boolean homingRocket, boolean offerCheese, boolean hiding);
+    }
+
+    public Oda (){
+        this("O", "Oda", 100.0, 0.0, 25.0, 0.0, 0, 8, 8, 1, 0, "red", 0, true, true, false)
     }
     /**
      * Overrides the canSpawn method from the Unit class.
